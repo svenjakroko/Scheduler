@@ -1,0 +1,19 @@
+﻿@model IEnumerable<Scheduler.Data.Event>
+@{
+    ViewBag.Title = "Title - Calendar";
+    ViewBag.InitModule = "homeKalendar"; // ubacuje se u viewbag u layout-u
+}
+@section Scripts{
+    <script src="~/js/home-kalendar.js"></script>
+    <script src="~/Scripts/jquery.js"></script>
+    <script src="~/Scripts/moment.js"></script>
+    <script src="~/Scripts/fullcalendar.js"></script>
+    <script src="~/Scripts/underscore.js"></script>
+}
+
+<div data-ng-controller="homeKalendarController">
+    <div id="divBody">
+        <div id='calendar'></div>
+    </div>
+
+</div>

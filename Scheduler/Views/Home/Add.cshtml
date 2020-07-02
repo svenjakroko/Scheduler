@@ -1,0 +1,100 @@
+﻿@model IEnumerable<Scheduler.Data.Event>
+@*model je member samog pagea koji representa datu koja mu je proslijedena*@
+@{
+    ViewBag.Title = "Add new Event";
+    ViewBag.InitModule = "homeTest"; // ubacuje se u viewbag u layout-u
+}
+@section Scripts{
+    <script src="~/Scripts/jquery.js"></script>
+    <script src="~/Scripts/moment.min.js"></script>
+    <script src="~/Scripts/underscore.js"></script>
+    <script src="~/Scripts/bootstrap-datetimepicker.min.js"></script>
+    <script src="~/js/home-test.js"></script>
+}
+
+<div data-ng-controller="homeTestController">
+    @*ime kontrolera koji je povezan na home-test.js*@
+    <h2 class="text-center" id="pocetak">@ViewBag.Title</h2>
+    <h3>@ViewBag.Message</h3>
+
+    <!-- Text forme iznad-->
+    <div class="row">
+
+        <form name="newEventForm" class="form-horizontal" data-ng-submit="save() " onSubmit="window.location.reload()">
+            <fieldset>
+                <!-- ime eventa -->
+                <div class="form-group">
+                    <label for="name" class="col-sm-1 control-label">Event</label>
+
+                    <div class="col-sm-4">
+                        <input name="title" type="text" class="form-control" data-ng-model="podaci.name">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="from" class="col-sm-1 control-label">From</label>
+                    <div class='input-group date col-sm-3' id='datetimepicker1'>
+                        <input type='text' class="form-control" />
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="from" class="col-sm-1 control-label">Until</label>
+                    <div class='input-group date col-sm-3' id='datetimepicker2'>
+                        <input type='text' class="form-control" />
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- description  -->
+                <div class="form-group">
+                    <label for="description" class="col-sm-1 control-label">Description</label>
+                    <div class="col-sm-4">
+                        <textarea name="description" rows="5" cols="30" class="form-control" data-ng-model="podaci.description"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-1 col-sm-10">
+                        <button type="submit" class="btn btn-primary" id="btnUbaci">Add</button>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+
+    <!-- Tablica -->
+    <div class="test_tab_table">
+        <table class="table table-hover">
+            <thead class="thead-light">
+                <tr class="info">
+                    <th scope="col" class="col-md-2">#</th>
+                    <th scope="col" class="col-md-2">Name</th>
+                    <th scope="col" class="col-md-3">From</th>
+                    <th scope="col" class="col-md-3">Until</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr data-ng-repeat="i in data">
+                    <th scope="row">{{ i.id }}</th>
+                    <td>{{ i.name }}</td>
+                    <td>{{ i.from }}</td>
+                    <td>{{ i.until }}</td>
+                    <td>{{ i.description }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+@*@foreach (var _event in Model)
+    {
+        <div>@_event.Id</div>
+    }*@
